@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Proshows - Saarang 2013 "IIT Madras"</title>
+<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
+</head>
+<body style="width:100%; height:100%; overflow:hidden">
+<!--<div id = "testbox" style="left:-150px; background-image:url(b1.jpg); position:absolute; width:200px; height:200px; top:0px"></div>-->
+
+<script>
+	
+	var imagesSmall = new Array();
+	var imagesBig = new Array();
+	var h = window.innerHeight;
+	var w = window.innerWidth;
+	var d1 = 400; //image1 dimension
+	var d2 = 200; //image2 dimension
+
+function initDefaults(){
+	
+	console.log(h, w);
+	var url;
+	
+	for(i=0;i<10;i++){
+		url = "s" + i + ".jpg";
+		imagesSmall.push(url);
+	}
+	
+	console.log(imagesSmall);
+	
+	for(i=0;i<10;i++){
+		url = "b" + i + ".jpg";
+		imagesBig.push(url);
+	}
+	
+	console.log(imagesBig);
+	
+}
+function setupGrid(){
+	/*Type 1 : hardcode grid; simple, fast; shud see -ve impacts*/
+	var centerx = w/2; 
+	var centery = h/2;
+	var lastl = (w-d1)/2;
+	var lastt = (h-d1)/2;
+	$("body").append( "<div id=\"center\"></div>" );
+	$("#center").css( "width", d1 );
+	$("#center").css( "height", d1 );
+	//$("center").css( "display" , "none" );
+	$("#center").css( "position", "absolute" );
+	$("#center").css( "left", lastl );
+	$("#center").css( "top",  lastt);
+	$("#center").css( "background-image", "url(\"b1.jpg\")" );
+	var x = (w - d1)/2;
+	var k = 1;
+	var idbox;
+	var selector;
+	var bgurl;
+	console.log("inital x" + x);
+	while(x>-200){
+		console.log(x);
+		idbox = "R" + k;
+		$("body").append( "<div id=\""+idbox+"\"></div>" );
+		selector = "#" + idbox;
+		$(selector).css( "width", d1 );
+		$(selector).css( "height", d1 );
+		//$("center").css( "display" , "none" );
+		$(selector).css( "position", "absolute" );
+		$(selector).css( "left", lastl + d1 );
+		$(selector).css( "top", lastt - d1/2 );
+		//$("#center").css( "background-color", "blue" );
+		$(selector).css( "background-image", "url(\"b1.jpg\")" );
+		lastl += d1;
+		lastt -= d1/2
+		x -= d1;
+		k++;		
+	}
+	x = (w - d1)/2;
+	lastl = (w-d1)/2;
+	lastt = (h-d1)/2;
+	while(x>-200){
+		console.log(x);
+		idbox = "L" + k;
+		$("body").append( "<div id=\""+idbox+"\"></div>" );
+		selector = "#" + idbox;
+		$(selector).css( "width", d1 );
+		$(selector).css( "height", d1 );
+		//$("center").css( "display" , "none" );
+		$(selector).css( "position", "absolute" );
+		$(selector).css( "left", lastl - d1 );
+		$(selector).css( "top", lastt + d1/2 );
+		//$("#center").css( "background-color", "blue" );
+		$(selector).css( "background-image", "url(\"b1.jpg\")" );
+		lastl += d1;
+		lastt -= d1/2
+		x -= d1;
+		k++;		
+	}
+	/*End of Type 1*/
+	
+}
+function preloadImages(){
+	
+	var imageObj = new Image();
+	
+	for (var i=0; i<imagesSmall.length; i++) {
+		imageObj.src = imagesSmall[i];
+	}
+	
+	for (var i=0; i<imagesBig.length; i++) {
+		imageObj.src = imagesBig[i];
+	}
+}
+function initGrid(){
+	
+	//preloadImages();
+	
+	
+}
+
+function getRandom(int){
+	if(int == "1")
+   		return Math.random()*(imagesSmall.length + 1);	
+	else
+		return Math.random()*(imagesBig.length + 1);	
+}
+function initGridEffects(){
+	
+	console.log(imagesSmall[Math.floor(getRandom("1"))]);
+	console.log(imagesBig[Math.floor(getRandom("2"))]);
+	
+}
+function putContent(){
+	
+	
+}
+
+</script>
+
+<script>
+$(window).load( function(e){	
+	
+	initDefaults();
+	setupGrid();
+	initGrid();
+	initGridEffects();
+	putContent();
+	
+});
+
+</script>
+</body>
+</html>

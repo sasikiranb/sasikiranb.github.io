@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Proshows - Saarang 2013 "IIT Madras"</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+</head>
+<body style="width:100%; height:100%; overflow:hidden; background-color:#000">
+<div id="overlay" style="width:100%; height:100%; background-color:#93C"></div>
+<style>
+.Box1{
+	position:absolute;
+	width:400px;
+	height:400px;
+	border:#000 3px solid;
+	opacity:0.15;
+		
+}
+#overlay{
+	opacity:0.15;
+	position:absolute;	
+	left:0px;
+	top:0px;
+	z-index:2;
+}
+.Box2{
+	position:absolute;
+	width:200px;
+	height:200px;
+	border:#000 
+	3px solid;
+	opacity:0.15;
+}
+</style>
+<div id="1" class="Box1 Normal" style="left:0px; top:-3px"></div>
+<div id="2" class="Box1  Normal" style="left:400px; top:-200px"></div>
+<div id="3" class="Box2 Normal" style="left:400px; top:200px"></div>
+<div id="4" class="Box2 Normal" style="left:600px; top:200px"></div>
+<div id="5" class="Box2 Normal" style="left:0px; top:400px"></div>
+<div id="6" class="Box2 Normal" style="left:600px; top:600px"></div>
+<div id="7" class="Box2 Normal" style="left:0px; top:600px"></div>
+<div id="8" class="Box2 Normal" style="left:600px; top:400px"></div>
+
+<div id="13" class="Box2 Normal" style="left:1200px; top:400px"></div>
+<div id="14" class="Box2 Normal" style="left:1200px; top:600px"></div>
+<div id="21" class="Box2 Fullhd" style="left:1400px; top:400px"></div>
+<div id="22" class="Box2 Fullhd" style="left:1400px; top:600px"></div>
+<div id="23" class="Box2 Fullhd" style="left:1800px; top:800px"></div>
+<div id="24" class="Box2 Fullhd" style="left:1600px; top:800px"></div>
+<div id="9" class="Box1 Normal" style="left:800px; top:400px"></div>
+<div id="10" class="Box1 Normal" style="left:200px; top:400px"></div>
+<div id="11" class="Box1 Normal" style="left:800px; top:-3px"></div>
+<div id="12" class="Box1 Normal" style="left:1203px; top:-3px"></div>
+<div id="17" class="Box1 Fullhd" style="left:1200px; top:803px"></div>
+<div id="18" class="Box1 Fullhd" style="left:800px; top:803px"></div>
+<div id="19" class="Box1 Fullhd" style="left:400px; top:803px"></div>
+<div id="20" class="Box1 Fullhd" style="left:0px; top:803px"></div>
+<div id="16" class="Box1 Fullhd" style="left:1600px; top:-3px"></div>
+<div id="15" class="Box1 Fullhd" style="left:1600px; top:400px"></div>
+
+<!-- proshow headliner -->
+
+<div id="rockshow" style="position:absolute; left:200px; top:200px"><img src="promo.jpg"/></div>
+<div id="rockshow-text" style="position:absolute; left:750px; top:250px; color:#FFF; font-family:'Helvetica'; font-size:36px"><b>VILDHJARTA</b></div>
+<div id="rockshow-text" style="position:absolute; left:750px; top:320px; color:#FFF; font-family:		'Lucida Sans Unicode', 'Lucida Grande', sans-serif; font-size:24px">Get ready to be amazed as <br/> Vildhjarta is here to rock your world.</div>
+
+<!-- headliner div end-->
+
+<script>
+	
+	var imagesSmall = new Array();
+	var imagesBig = new Array();
+	var bg = ["#F93", "#CCC", "#93C", "#B86447", "#9FC", "#3CF"];
+	var h = window.innerHeight;
+	var w = window.innerWidth;
+	var d1 = 400; //image1 dimension
+	var d2 = 200; //image2 dimension
+	var fullhd = false;
+	var randomId;
+	var selector;
+	var color = "#9FC";
+	var gen = "#3CF"
+	var randommax;
+	var presbg;
+
+function initDefaults(){
+	
+	console.log(h, w);
+	var url;
+	if($(window).width() > 1400) fullhd = true;
+	
+	for(i=1;i<6;i++){
+		url = "s" + i + ".jpg";
+		imagesSmall.push(url);
+	}
+	
+	console.log(imagesSmall);
+	
+	for(i=1;i<6;i++){
+		url = "b" + i + ".jpg";
+		imagesBig.push(url);
+	}
+	
+	console.log(imagesBig);
+	
+}
+function setupGrid(){
+	
+	var k;
+	window.image = new Array(); // stores background of all the photo divs
+	
+    function start() {
+		window.time = 3000;
+		
+			if(fullhd)k = 24;
+			else k = 14;
+			console.log(k);
+	
+		for(i = 1; i < 15; i++){
+			
+			if($('#' + i).hasClass('Box1')){
+				
+				$("#" + i).css("background-image", "url(\""+imagesBig[Math.floor(getRandom("2"))]+"\")");	
+			}
+			else{
+				$("#" + i).css("background-image", "url(\""+imagesSmall[Math.floor(getRandom("1"))]+"\")");			
+			}
+		}
+		if(k == "24"){
+			for(i = 15; i < 25; i++){
+			
+				if($('#' + i).hasClass('Box1')){
+				$("#" + i).css("background-image", "url(\""+imagesBig[Math.floor(getRandom("2"))]+"\")");	
+			}
+			else{
+				$("#" + i).css("background-image", "url(\""+imagesSmall[Math.floor(getRandom("1"))]+"\")");			
+			}
+			}
+		}
+	}
+	
+	start();
+		
+	/* puts the image required as the background of the given id */
+	
+	function put(id){
+		
+		if($('#' + id).hasClass('Box1')){
+			randommax = imagesBig[Math.floor(getRandom("2"))];
+			presbg = $('#' + id).css('background-image');
+			var i = presbg.lastIndexOf("/");
+			presbg = presbg.substring((i + 1),presbg.length - 1);
+			while(presbg == randommax) randommax = imagesBig[Math.floor(getRandom("2"))];
+			$("#" + id).css("background-image", "url(\""+randommax+"\")");	
+
+		}
+		else{
+			randommax = imagesSmall[Math.floor(getRandom("1"))];
+			presbg = $('#' + id).css('background-image');console.log(presbg + randommax + "init");
+			while(presbg == randommax) randommax = imagesSmall[Math.floor(getRandom("1"))];
+			$("#" + id).css("background-image", "url(\""+randommax+"\")");	
+		}
+	}
+	
+	function swap(){
+		
+		console.log("swap called");
+		var maxim = 14;		
+		if(fullhd) maxim = 24;
+		console.log(maxim)
+		randomId = Math.floor(1 + Math.random()*(maxim));
+		console.log(randomId + "swapping this div");
+		$("#" + randomId).fadeOut(1000);
+		setTimeout(function(){put(randomId)}, 1000); 
+		selector = "#" + randomId; 
+		setTimeout(function(){$(selector).fadeIn(1000)}, 10); 
+		}
+		setInterval(function(){swap()},4000);
+		console.log("done");
+	}
+		
+function preloadImages(){
+	
+	var imageObj = new Image();
+	
+	for (var i=0; i<imagesSmall.length; i++) {
+		imageObj.src = imagesSmall[i];
+	}
+	
+	for (var i=0; i<imagesBig.length; i++) {
+		imageObj.src = imagesBig[i];
+	}
+}
+function initGrid(){
+	
+	//preloadImages();
+	
+}
+
+function getRandom(int){
+	if(int == "1")
+   		return Math.random()*(imagesSmall.length);	
+	else
+		return Math.random()*(imagesBig.length);	
+}
+function initGridEffects(){
+	
+
+	function overlayChange(){
+	color = bg[Math.floor(Math.random()*(bg.length - 1))];
+	while(color == gen)	color = bg[1 + Math.floor(Math.random()*(bg.length))];
+	gen = color;
+	$('#overlay').animate({
+                backgroundColor:color
+	}, 3000, function(){
+		console.log("donebg");
+            });
+	}
+	/*$('#overlay').css({
+    background: "-webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000))" 
+			});*/
+	setInterval(function(){overlayChange()},9000);
+	
+}
+function putContent(){
+	
+	
+}
+
+$(window).load( function(e){	
+	
+	initDefaults();
+	setupGrid();
+	initGrid();
+	initGridEffects();
+	putContent();
+		
+});
+
+</script>
+</body>
+</html>
